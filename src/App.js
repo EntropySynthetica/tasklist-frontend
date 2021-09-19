@@ -3,8 +3,6 @@ import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
-import SaveIcon from "@material-ui/icons/Save";
-import { Button } from "@material-ui/core";
 import "./index.css";
 
 function App() {
@@ -24,6 +22,7 @@ function App() {
     root: {
       "& .MuiPaper-root": {
         borderRadius: "15px",
+        alignItems: "center",
         width: "90%",
         boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75);"
       }
@@ -47,35 +46,26 @@ function App() {
             title="Task List"
             icons={{
               Clear: (props) => <DeleteIcon />,
-              Search: (props) => <SearchIcon />,
-              ResetSearch: (props) => <DeleteIcon />
+              Search: (props) => <SearchIcon />
             }}
 
-            // actions={[
-            //   {
-            //     icon: () => <SaveIcon />,
-            //     tooltip: "Save User",
-            //     onClick: (event, rowData) => alert("You saved " + rowData.name)
-            //   }
-            // ]}
-
-            // components={{
-            //   Action: (props) => (
-            //     <Button
-            //       onClick={(event) => props.action.onClick(event, props.data)}
-            //       color="primary"
-            //       variant="text"
-            //       style={{ textTransform: "none" }}
-            //       size="small"
-            //     >
-            //       Save
-            //     </Button>
-            //   )
-            // }}
+            actions={[
+              {
+                icon: 'save',
+                tooltip: 'Save Task',
+                onClick: (event, rowData) => alert("You saved " + rowData.task_id)
+              },
+              rowData => ({
+                icon: 'delete',
+                tooltip: 'Delete Task',
+                onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
+              })
+            ]}
 
             options={{
+              actionsColumnIndex: -1,
               headerStyle: {
-                backgroundColor: "#01579b",
+                backgroundColor: "#430fb3",
                 color: "#FFF"
               }
             }}
