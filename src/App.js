@@ -15,10 +15,12 @@ function App() {
 
   return (
     <div>
+      <ul>
       {(typeof data === 'undefined') ? (<p>Loading...</p>) :   // Display Loading... until the API can grab data. 
         (
-          data.map((task, i) => <p key={i}>{task.task_name}</p>)
+          data.map((task, i) => <li key={i}>{task.task_name} / {task.task_desc} / {task.status_name} / </li>)
         )}
+      </ul>
     </div>
   )
 }
