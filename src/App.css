@@ -1,4 +1,10 @@
 .App {
+  padding: 15px;
+  text-align: center;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -35,4 +41,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.DeleteIcon {
+  color: #d46a24;
+}
+
+.SaveIcon {
+  color: #1ba52d;
+}
+
+.MuiIconButton-label {
+  color: #424242;
 }

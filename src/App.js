@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core";
+import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
-import "./index.css";
+import "./App.css";
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <div>
-      <div class="App">
+      <div className="App">
         <div className={classes.root}>
           <MaterialTable
             columns={[
@@ -51,15 +52,20 @@ function App() {
 
             actions={[
               {
-                icon: 'save',
+                icon: () => (<SaveIcon fontSize="medium" className="SaveIcon" />),
                 tooltip: 'Save Task',
                 onClick: (event, rowData) => alert("You saved " + rowData.task_id)
               },
-              rowData => ({
-                icon: 'delete',
-                tooltip: 'Delete Task',
+              {
+                icon: () => (<DeleteIcon fontSize="medium" className="DeleteIcon"/>),
+                tooltip: 'Delete Item',
                 onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
-              })
+              },
+              // rowData => ({
+              //   icon: 'delete',
+              //   tooltip: 'Delete Task',
+              //   onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
+              // })
             ]}
 
             options={{
