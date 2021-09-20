@@ -61,11 +61,6 @@ function App() {
                 tooltip: 'Delete Item',
                 onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
               },
-              // rowData => ({
-              //   icon: 'delete',
-              //   tooltip: 'Delete Task',
-              //   onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
-              // })
             ]}
 
             options={{
