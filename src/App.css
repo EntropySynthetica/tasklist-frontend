@@ -11,6 +11,18 @@
   position: relative;
 }
 
+.Footer {
+  text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 3%;
+  width: 90%;
+  position: relative;
+  background: white;
+  border-radius: 15px;
+  padding: px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import SimpleModal from "./components/modal";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
@@ -72,6 +73,9 @@ function App() {
             }}
           />
         </div>
+      </div>
+      <div className="Footer">
+        <SimpleModal /> <br />
       </div>
     </div>
   )
