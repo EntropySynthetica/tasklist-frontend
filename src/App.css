@@ -1,11 +1,14 @@
 .App {
-  padding: 15px;
   text-align: center;
-  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 3%;
+  width: 90%;
+  position: relative;
 }
 
 .App-logo {

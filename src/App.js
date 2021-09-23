@@ -24,7 +24,7 @@ function App() {
       "& .MuiPaper-root": {
         borderRadius: "15px",
         alignItems: "center",
-        width: "90%",
+        width: "100%",
         boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.75);"
       }
     }
