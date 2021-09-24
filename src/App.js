@@ -67,16 +67,28 @@ function App() {
             }}
 
             actions={[
-              {
-                icon: () => (<SaveIcon fontSize="medium" className="SaveIcon" />),
-                tooltip: 'Save Task',
-                onClick: (event, rowData) => alert("You saved " + rowData.task_id)
-              },
-              {
-                icon: () => (<DeleteIcon fontSize="medium" className="DeleteIcon"/>),
-                tooltip: 'Delete Item',
-                onClick: (event, rowData) => deleteTaskviaAPI(rowData),
-              },
+                {
+                    icon: () => (<SaveIcon fontSize="medium" className="SaveIcon" />),
+                    tooltip: 'Save Task',
+                    onClick: (event, rowData) => alert("You saved " + rowData.task_id)
+                },
+                {
+                    icon: () => (<DeleteIcon fontSize="medium" className="DeleteIcon"/>),
+                    tooltip: 'Delete Item',
+                    onClick: (event, rowData) => deleteTaskviaAPI(rowData),
+                },
+                {
+                    icon: 'add',
+                    tooltip: 'New Task',
+                    isFreeAction: true,
+                    onClick: (event) => alert("null"),
+                },
+                {
+                    icon: 'refresh',
+                    tooltip: 'Refresh Data',
+                    isFreeAction: true,
+                    onClick: () => alert("null"),
+                },
             ]}
 
             options={{
