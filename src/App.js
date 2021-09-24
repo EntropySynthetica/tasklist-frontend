@@ -7,6 +7,20 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
 import "./App.css";
 
+function deleteTaskviaAPI(data) {
+  fetch(`${process.env.REACT_APP_API_URL}/api/deletetask/${data.task_id}`, {
+    "method": "DELETE",
+    "headers": {}
+  })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+
 function App() {
 
   const [data, setData] = useState([{}])
@@ -60,7 +74,7 @@ function App() {
               {
                 icon: () => (<DeleteIcon fontSize="medium" className="DeleteIcon"/>),
                 tooltip: 'Delete Item',
-                onClick: (event, rowData) => alert("You want to delete " + rowData.task_id),
+                onClick: (event, rowData) => deleteTaskviaAPI(rowData),
               },
             ]}
 
