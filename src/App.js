@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/api/task`) // Poll This API Endpoint
       .then(results => results.json())    // Take the results and parse the JSON 
-      .then(data => {setData(data)  // Take teh results of the JSON parse and put them in the data var. 
+      .then(data => {setData(data)  // Take the results of the JSON parse and put them in the data var. 
                     console.log(data)  // Output data to console for debugging 
       })
 

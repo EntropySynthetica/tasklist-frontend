@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import Modal from '@material-ui/core/Modal';
 import { Form, Field } from "@leveluptuts/fresh";
 
-const onSubmit = (data) => console.log(data);
+// const onSubmit = (data) => console.log(data);
+const onSubmit = (data) => newTaskviaAPI(data);
 
 function UserProfileForm() {
     return (
@@ -43,6 +44,23 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(2, 4, 3),
     },
 }));
+
+function newTaskviaAPI(data) {
+    fetch(`${process.env.REACT_APP_API_URL}/api/newtask`, {
+        "method": "POST",
+        "headers": { "Content-Type": "application/json" },
+        "body": JSON.stringify({
+            task_name: data.taskName,
+            task_desc: data.taskDescription
+        })
+    })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
 
 export default function SimpleModal() {
     const classes = useStyles();
