@@ -18,6 +18,7 @@ function deleteTaskviaAPI(data) {
     .catch(err => {
       console.error(err);
     });
+  window.location.reload(); // Relaod the site on delete
 }
 
 

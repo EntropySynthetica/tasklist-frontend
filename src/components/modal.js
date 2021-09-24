@@ -60,6 +60,7 @@ function newTaskviaAPI(data) {
         .catch(err => {
             console.error(err);
         });
+    window.location.reload();
 }
 
 export default function SimpleModal() {
