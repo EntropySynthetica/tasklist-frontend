@@ -1,4 +1,5 @@
-FROM node:16.10.0-alpine3.14
+# Stage 1
+FROM node:16.10.0-alpine3.14 as builder
 
 WORKDIR /app
 
@@ -9,4 +10,17 @@ RUN npm install
 
 COPY ./ /app
 
-CMD ["npm", "run", "start"]
+RUN npm run build
+
+# Stage 2
+FROM nginx:1.21.3
+
+WORKDIR /usr/share/nginx/html
+
+# Remove default nginx static resources
+RUN rm -rf ./*
+
+# Copies static resources from builder stage
+COPY --from=builder /app/build .
+
+CMD ["nginx", "-g", "daemon off;"]
