@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import SimpleModal from "./components/modal";
 import MaterialTable from "material-table";
 import { makeStyles } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SearchIcon from "@material-ui/icons/Search";
@@ -21,6 +21,49 @@ function deleteTaskviaAPI(data) {
     window.location.reload(); // Relaod the site on delete
 }
 
+function newTaskviaAPI(data) {
+    fetch(`${process.env.REACT_APP_API_URL}/api/newtask`, {
+        "method": "POST",
+        "headers": { "Content-Type": "application/json" },
+        "body": JSON.stringify({
+            task_name: data.task_name,
+            task_desc: data.task_desc,
+        })
+    })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    window.location.reload();
+}
+
+function updateTaskviaAPI(data) {
+    fetch(`${process.env.REACT_APP_API_URL}/api/task/${data.task_id}`, {
+        "method": "PUT",
+        "headers": { 
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+            "Access-Control-Allow-Origin": "http://localhost",
+        },
+        "body": JSON.stringify({
+            task_name: data.task_name,
+            task_desc: data.task_desc,
+            username: "2",
+            status_name : "2",
+            priority_name : "1",
+        })
+    })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    // window.location.reload();
+}
 
 function App() {
 
@@ -67,23 +110,28 @@ function App() {
                             Search: (props) => <SearchIcon />
                         }}
 
+                        editable={{
+                            onRowAdd: newData =>
+                                new Promise((resolve, reject) => {
+                                    console.log("onRowAdd", newData);
+                                    newTaskviaAPI(newData);
+                                    resolve();
+                                }),
+                            onRowUpdate: (newData, oldData) =>
+                                new Promise((resolve, reject) => {
+                                    console.log("onRowUpdate", newData);
+                                    updateTaskviaAPI(newData);
+                                    resolve();
+                                }),
+                            onRowDelete: (rowData) => 
+                                new Promise((resolve) => {
+                                    console.log("onRowDelete", rowData);
+                                    deleteTaskviaAPI(rowData);
+                                    resolve();
+                                }),
+                        }}
+
                         actions={[
-                            {
-                                icon: () => (<SaveIcon fontSize="medium" className="SaveIcon" />),
-                                tooltip: 'Save Task',
-                                onClick: (event, rowData) => alert("You saved " + rowData.task_id)
-                            },
-                            {
-                                icon: () => (<DeleteIcon fontSize="medium" className="DeleteIcon" />),
-                                tooltip: 'Delete Item',
-                                onClick: (event, rowData) => deleteTaskviaAPI(rowData),
-                            },
-                            {
-                                icon: 'add',
-                                tooltip: 'New Task',
-                                isFreeAction: true,
-                                onClick: (event) => alert("null"),
-                            },
                             {
                                 icon: 'refresh',
                                 tooltip: 'Refresh Data',
@@ -101,9 +149,6 @@ function App() {
                         }}
                     />
                 </div>
-            </div>
-            <div className="Footer">
-                <SimpleModal /> <br />
             </div>
         </div>
     )
