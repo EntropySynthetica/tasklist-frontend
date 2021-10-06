@@ -47,7 +47,7 @@ function updateTaskviaAPI(data) {
             task_name: data.task_name,
             task_desc: data.task_desc,
             username: "2",
-            status_name : "2",
+            status_id : data.status_id,
             priority_name : "1",
         })
     })
@@ -95,7 +95,18 @@ function App() {
                         columns={[
                             { title: "Name", field: "task_name" },
                             { title: "Description", field: "task_desc" },
-                            { title: "Status", field: "status_name" }
+                            { 
+                                title: "Status", 
+                                field: "status_id",
+                                lookup: { 
+                                        1: 'New',
+                                        2: 'In Queue',
+                                        3: 'Deferred',
+                                        4: 'In Progress',
+                                        5: 'Completed',
+                                        6: 'Canceled',
+                                        } 
+                            }
                         ]}
 
                         data={data}
