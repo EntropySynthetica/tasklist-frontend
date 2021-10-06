@@ -42,12 +42,7 @@ function newTaskviaAPI(data) {
 function updateTaskviaAPI(data) {
     fetch(`${process.env.REACT_APP_API_URL}/api/task/${data.task_id}`, {
         "method": "PUT",
-        "headers": { 
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Headers": "Content-Type",
-            "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-            "Access-Control-Allow-Origin": "http://localhost",
-        },
+        "headers": { "Content-Type": "application/json" },
         "body": JSON.stringify({
             task_name: data.task_name,
             task_desc: data.task_desc,
@@ -62,7 +57,7 @@ function updateTaskviaAPI(data) {
         .catch(err => {
             console.error(err);
         });
-    // window.location.reload();
+    window.location.reload();
 }
 
 function App() {
