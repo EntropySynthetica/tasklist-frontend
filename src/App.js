@@ -93,8 +93,8 @@ function App() {
                 <div className={classes.root}>
                     <MaterialTable
                         columns={[
-                            { title: "Name", field: "task_name" },
-                            { title: "Description", field: "task_desc" },
+                            { title: "Name", field: "task_name", filtering: false },
+                            { title: "Description", field: "task_desc", filtering: false },
                             { 
                                 title: "Status", 
                                 field: "status_id",
@@ -147,6 +147,7 @@ function App() {
                         ]}
 
                         options={{
+                            filtering: true,
                             actionsColumnIndex: -1,
                             headerStyle: {
                                 backgroundColor: "#430fb3",
