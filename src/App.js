@@ -121,18 +121,33 @@ function App() {
                                 new Promise((resolve, reject) => {
                                     console.log("onRowAdd", newData);
                                     newTaskviaAPI(newData);
+
+                                    setData([...data, newData]);
+
                                     resolve();
                                 }),
                             onRowUpdate: (newData, oldData) =>
                                 new Promise((resolve, reject) => {
                                     console.log("onRowUpdate", newData);
                                     updateTaskviaAPI(newData);
+
+                                    const dataUpdate = [...data];
+                                    const index = oldData.tableData.id;
+                                    dataUpdate[index] = newData;
+                                    setData([...dataUpdate]);
+
                                     resolve();
                                 }),
                             onRowDelete: (rowData) => 
                                 new Promise((resolve) => {
                                     console.log("onRowDelete", rowData);
                                     deleteTaskviaAPI(rowData);
+
+                                    const dataDelete = [...data];
+                                    const index = rowData.tableData.id;
+                                    dataDelete.splice(index, 1);
+                                    setData([...dataDelete]);
+
                                     resolve();
                                 }),
                         }}
